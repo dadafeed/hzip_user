@@ -1,0 +1,595 @@
+/* style.css -> 랜딩, 팝업 레이아웃 공통 + 01.메인 ~ 05.단지상세 */
+@charset "UTF-8";
+
+@import url('./swiper.min.css');
+
+/* font */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap'); /* 230608 웹폰트 추가 */
+
+/* reset */
+* { margin: 0; padding: 0; box-sizing: border-box; font: inherit; color: inherit; font-family: 'Noto Sans KR', sans-serif; }
+html, body { -webkit-text-size-adjust: 100%; width: 100%; height: 100%; }
+html { font-size: 16px; overflow: hidden; }
+body { width: 100%; background: #222; overflow-x: hidden; overflow-y: auto; font-size: 1rem; color: #fff; word-wrap: break-word; word-break: keep-all; min-width: 320px; }
+h1, h2, h3, h4, h5, h6, strong { font-weight: 700; }
+ul, ol, li { list-style: none; }
+a { text-decoration: none; color: #fff; }
+img { width: 100%; display: block; object-fit: cover; } /* 230708 수정 */
+button { border: 0; outline: 0; cursor: pointer; background: transparent; }
+table { border: 0; border-spacing: 0; border-collapse: collapse; }
+
+/* common */
+.blind { position: absolute; overflow: hidden; width: 1px; height: 1px; padding: 0; border: 0; margin: -1px; clip: rect(0, 0, 0, 0); }
+.inner { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+.ellipsis { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } /* 230708 수정*/
+.ellipsis-two { overflow: hidden; text-overflow: ellipsis; display: -webkit-box !important; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.pc-only { display: block; }
+.mo-only { display: none; }
+.scroll-lock { height: 100%; min-height: 100%; overflow: hidden !important; touch-action: none; }
+
+/* style */
+/* 헤더, 푸터 공통 */
+header { display: flex; align-items: center; height: 5rem; border-bottom: 1px solid #30353F; }
+header > .inner { display: flex; align-items: center; }
+header h1 > a{ display: block; }
+header h1 .img-area { display: block; width: 5.625rem; height: 2.375rem; }
+.nav { margin-left: 1.25rem; }
+.nav > li { display: inline-block; line-height: 5rem; }
+.nav > li > a { display: inline-block; line-height: 5rem; padding: 0 1.25rem; font-size: 1.125rem; color: #737373; }
+.nav > li.on > a { color: #fff; font-weight: 700; }
+footer { width: 100%; background: #2A2D32; }
+footer .inner { display: flex; justify-content: space-between; padding: 2rem 1.25rem; position: relative; }
+footer .txt-area > span { font-size: 0.875rem; line-height: 2.5rem; color: #A6A6A6; }
+footer .txt-area > p { font-size: 0.8125rem; line-height: 1.8; color: #737373; }
+footer .txt-area > span + p { margin-top: 1rem; }
+footer .btn-sns-area { position: absolute; bottom: 2rem; right: 2.5rem; }
+footer .btn-sns-area > .btn-sns { display: inline-block; width: 2.5rem; height: 2.5rem; }
+footer .btn-sns-area > .btn-sns + .btn-sns { margin-left: 0.9375rem; }
+footer .btn-sns-area > .btn-sns.kakaoch { background: url('../img/icon-kakaoch.png') no-repeat center/contain; }
+footer .btn-sns-area > .btn-sns.branch { background: url('../img/icon-branch.png') no-repeat center/contain; }
+footer .btn-sns-area > .btn-sns.insta { background: url('../img/icon-insta.png') no-repeat center/contain; }
+footer .btn-sns-area > .btn-sns.inquiry { background: url('../img/icon-inquiry.png') no-repeat center/contain; }
+
+/* 텍스트 아이콘 및 아파트 로고 아이콘 공통 */
+main .icon-and-img-area { display: block; /* width: 100%; */ width: 10.625rem; } /* 230708 수정 */
+main .icon-and-img-area.medium { width: 17.0625rem; } /* 230708 수정 */
+main .apt-img-area { display: block; /* width: 100%; */ border-radius: 1rem; overflow: hidden; width: 10.625rem; height: 13.375rem; } /* 230708 수정 */
+main .apt-img-area > img { height: 100%; } /* 230708 수정 */
+main .apt-img-area.medium { width: 17.0625rem; height: 21.4375rem; } /* 230708 수정 */
+main .apt-img-area.medium > img { height: 100% } /* 230708 수정 */
+main .state { display: inline-block; padding: 0.25rem 0.5rem; border-radius: 0.625rem; font-size: 0.6875rem; font-weight: 500; color: #393939; }
+main .state.sale { background: #FAFF00; } /* 분양중 */
+main .state.scheduled { background: #B4FF39; } /* 분양예정, 입주예정 */
+main .state.imminent { background: #F0884D; } /* 입주임박 */
+main .apt { display: inline-block; width: 1.25rem; height: 1.25rem; }
+main .apt.raemian { background: url('../img/icon_raemian.png') no-repeat center/contain; }
+main .apt.prugio { background: url('../img/icon_prugio.png') no-repeat center/contain; }
+main .apt.xi { background: url('../img/icon_xi.png') no-repeat center/contain; }
+
+/* 메인 - pc */
+main.main section { display: flex; justify-content: space-between; align-items: center; max-width: 1240px; }
+main.main section.top { padding-top: 2.5rem; }
+main.main section.bottom { padding-bottom: 5.125rem; }
+main.main section + section { margin-top: 5rem; }
+main.main section.top + section.middle { margin-top: 3.75rem; }
+main.main section > div { width: 36.375rem; } /* 230708 수정 */
+main.main section > div + div { margin-left: 2.25rem; } /* 230708 수정 */
+
+main.main section.top { align-items: start; }
+main.main section.top .btns-area {  display: flex; align-items: center; width: 36.375rem; } /* 230708 수정 */
+main.main section.top .btns-area > button { display: inline-block; padding: 1.875rem 1.875rem; background: #2A2D32; border-radius: 0.5rem; text-align: center; width: 11.375rem; height: 7.75rem; } /* 230708 수정 */
+main.main section.top .btns-area > button + button { margin-left: 1.125rem; } /* 230708 수정 */
+main.main section.top .btns-area button > span { display: block; font-size: 0.9375rem; color: #B9B9B9; }
+main.main section.top .btns-area button > span.icon-area { display: block; width: 2.25rem; height: 2.25rem; margin: 0 auto 0.75rem; }
+main.main section.top .btns-area button > span.icon-area.place { background: url('../img/icon_place.png') no-repeat center/contain; }
+main.main section.top .btns-area button > span.icon-area.list { background: url('../img/icon_list.png') no-repeat center/contain; }
+main.main section.top .btns-area button > span.icon-area.building { background: url('../img/icon_building.png') no-repeat center/contain; }
+main.main section.top .swiper.banner { width: 100%; overflow: hidden; }
+main.main section.top .swiper.banner .swiper-wrapper { width: 100%; height: 100%; }
+main.main section.top .swiper.banner .swiper-slide { border-radius: 0.5rem; overflow: hidden; }
+main.main section.top .swiper.banner .swiper-slide > a { display: block; padding-bottom: 21.3%; overflow: hidden; width: 36.375rem; height: 7.75rem; } /* 230708 수정 */
+main.main section.top .swiper.banner .swiper-slide > a > img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+main.main section.top .swiper.banner .swiper-control { width: 100%; position: relative; top: -1.5rem; left: 0; z-index: 10; }
+main.main section.top .swiper.banner .swiper-control .swiper-pagination { position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 20; }
+main.main section.top .swiper.banner .swiper-control .swiper-pagination .swiper-pagination-bullet { border: none; width: 0.25rem; height: 0.25rem; background: #BFBFBF; display: inline-block; border-radius: 50%; margin: 0 0.25rem !important; opacity: 1; cursor: pointer; }
+main.main section.top .swiper.banner .swiper-control .swiper-pagination .swiper-pagination-bullet-active { width: 0.8125rem; background: #A6A6A6; border-radius: 0.5625rem; }
+
+main.main section.middle { align-items: start; }
+main.main section.middle .tit-area { display: flex; justify-content: space-between; align-items: center; }
+main.main section.middle .tit-area strong { display: block; font-size: 1.5rem; font-weight: 700; line-height: 2.5rem; letter-spacing: -0.3px; }
+main.main section.middle .tit-area a.link { display: block; width: 2.5rem; height: 2.5rem; background: url('../img/icon-link.png') no-repeat center/contain; }
+main.main section.middle .tit-area + .swiper-area { margin-top: 2rem; }
+main.main section.middle .swiper-area { width: 100%; }
+main.main section.middle .swiper .swiper-slide .icon-and-img-area { position: relative; }
+main.main section.middle .swiper .swiper-slide .icon-and-img-area > .state { position: absolute; top: 0.5rem; left: 0.5rem; }
+main.main section.middle .swiper .swiper-slide .icon-and-img-area > .apt { position: absolute; top: 0.5rem; right: 0.5rem; }
+
+main.main section.middle .swiper.recent { width: 100%; overflow: hidden; }
+main.main section.middle .swiper.recent .swiper-wrapper { width: 100%; height: 100%; padding-bottom: 2rem; }
+main.main section.middle .swiper.recent .swiper-slide { width: 10.625rem; } /* 230708 수정 */
+main.main section.middle .swiper.recent .swiper-slide + .swiper-slide { } /* 230708 수정 */
+main.main section.middle .swiper.recent .swiper-slide > a { display: block; width: 10.625rem; } /* 230708 수정 */
+main.main section.middle .swiper.recent .swiper-slide .txt-area { display: block; width: 100%; margin-top: 0.75rem; }
+main.main section.middle .swiper.recent .swiper-slide .txt-area > .tit { display: block; font-size: 1.125rem; font-weight: 700; line-height: 1.75rem; color: #D2D2D2; }
+main.main section.middle .swiper.recent .swiper-slide .txt-area > .detail { display: block; font-size: 0.875rem; font-weight: 400; line-height: 1.5rem; color: #737373; }
+main.main section.middle .swiper.recent .swiper-slide .txt-area > .price { display: block; font-size: 1rem; line-height: 1.625rem; color: #A5A5A5; letter-spacing: -0.4px; }
+main.main section.middle .swiper.recent .swiper-control { display: inline-block; height: 1.5rem; position: relative; top: 0; left: 50%; transform: translateX(-50%); }
+main.main section.middle .swiper.recent .swiper-control .swiper-pagination { position: relative; z-index: 10; }
+main.main section.middle .swiper.recent .swiper-control .swiper-pagination .swiper-pagination-bullet { border: none; width: 0.375rem; height: 0.375rem; background: #8F8D51; display: inline-block; border-radius: 50%; margin: 0 0.25rem !important; opacity: 1; cursor: pointer; }
+main.main section.middle .swiper.recent .swiper-control .swiper-pagination .swiper-pagination-bullet-active { width: 1rem; background: #FAFF00; border-radius: 3px; }
+main.main section.middle .swiper.recent .swiper-control .btn-stop { display: inline-block; width: 1rem; height: 1rem; background: url('../img/icon_stop.png') no-repeat center/contain; position: absolute; top: 0.475rem; right: -1.375rem; } /* 230612 수정 */
+main.main section.middle .swiper.recent .swiper-control .btn-stop.on { background: url('../img/icon_play.png') no-repeat center/contain; } /* 230612 재생버튼 추가 */
+
+main.main section.middle .swiper.popular { width: 100%; overflow: hidden; }
+main.main section.middle .swiper.popular .swiper-wrapper { width: 100%; height: 100%; padding-bottom: 2rem; }
+main.main section.middle .swiper.popular .swiper-slide > a { display: block; width: 100%; }
+main.main section.middle .swiper.popular .swiper-slide .txt-area { display: block; width: 100%; height: 5.375rem; margin-top: 0.75rem; }
+main.main section.middle .swiper.popular .swiper-slide .txt-area > .tit { display: block; font-size: 1.125rem; font-weight: 700; line-height: 1.75rem; color: #D2D2D2; }
+main.main section.middle .swiper.popular .swiper-slide .txt-area > .detail { display: block; font-size: 0.875rem; font-weight: 400; line-height: 1.5rem; color: #737373; }
+main.main section.middle .swiper.popular .swiper-slide .txt-area > .price { display: block; font-size: 1rem; line-height: 1.625rem; color: #A5A5A5; letter-spacing: -0.4px; }
+main.main section.middle .swiper.popular .swiper-control { display: inline-block; height: 1.5rem; position: relative; top: 0; left: 50%; transform: translateX(-50%); }
+main.main section.middle .swiper.popular .swiper-control .swiper-pagination { position: relative; z-index: 10; }
+main.main section.middle .swiper.popular .swiper-control .swiper-pagination .swiper-pagination-bullet { border: none; width: 0.375rem; height: 0.375rem; background: #8F8D51; display: inline-block; border-radius: 50%; margin: 0 0.25rem !important; opacity: 1; cursor: pointer; }
+main.main section.middle .swiper.popular .swiper-control .swiper-pagination .swiper-pagination-bullet-active { width: 1rem; background: #FAFF00; border-radius: 0.1875rem; }
+main.main section.middle .swiper.popular .swiper-control .btn-stop { display: inline-block; width: 1rem; height: 1rem; background: url('../img/icon_stop.png') no-repeat center/contain; position: absolute; top: 0.475rem; right: -1.375rem; } /* 230612 수정 */
+main.main section.middle .swiper.popular .swiper-control .btn-stop.on { background: url('../img/icon_play.png') no-repeat center/contain; } /* 230612 재생버튼 추가 */
+
+main.main section.bottom { align-items: normal; }
+main.main section.bottom .tit-area { display: flex; justify-content: space-between; align-items: center; }
+main.main section.bottom .tit-area strong { display: block; font-size: 1.5rem; font-weight: 700; line-height: 2.5rem; }
+main.main section.bottom .tit-area a.link { display: block; width: 2.5rem; height: 2.5rem; background: url('../img/icon-link.png') no-repeat center/contain; }
+main.main section.bottom .tit-area + .contents-area.pc-only { margin-top: 2rem; }
+main.main section.bottom .contents-area.pc-only { display: flex; align-items: center; }
+main.main section.bottom .contents-area.pc-only > li { width: 100%; }
+main.main section.bottom .contents-area.pc-only > li > a { display: block; }
+main.main section.bottom .contents-area.pc-only > li + li { margin-left: 2.25rem; } /* 230708 수정 */
+main.main section.bottom .contents-area.pc-only > li .img-area { display: block; border-radius: 1rem; overflow: hidden; width: 10.625rem; height: 10.625rem; } /* 230708 수정 */
+main.main section.bottom .contents-area.pc-only > li .img-area > img { height: 100%; }
+main.main section.bottom .contents-area.pc-only > li .txt-area { margin-top: 0.75rem; }
+main.main section.bottom .contents-area.pc-only > li .tit { font-size: 1rem; font-weight: 700; line-height: 1.5; color: #D2D2D2; }
+main.main section.bottom .contents-area.pc-only > li .date { display: block; font-size: 0.75rem; font-weight: 400; line-height: 1.375rem; color: #737373; margin-top: 2px; }
+
+main.main section.bottom .swiper.advertising { width: 100%; overflow: hidden; }
+main.main section.bottom .swiper.advertising .swiper-wrapper { width: 100%; height: 100%; padding-bottom: 2rem; }
+main.main section.bottom .swiper.advertising .swiper-slide > a { display: block; width: 100%; } 
+main.main section.bottom .swiper.advertising .swiper-slide .img-area { display: block; padding-bottom: 49.48%; overflow: hidden; width: 36.375rem; height: 18rem; } /* 230708 수정 */
+main.main section.bottom .swiper.advertising .swiper-slide .img-area > img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+main.main section.bottom .swiper.advertising .swiper-control { display: inline-block; height: 1.5rem; position: relative; top: 0; left: 50%; transform: translateX(-50%); }
+main.main section.bottom .swiper.advertising .swiper-control .swiper-pagination { position: relative; z-index: 10; }
+main.main section.bottom .swiper.advertising .swiper-control .swiper-pagination .swiper-pagination-bullet { border: none; width: 0.375rem; height: 0.375rem; background: #8F8D51; display: inline-block; border-radius: 50%; margin: 0 0.25rem !important; opacity: 1; cursor: pointer; }
+main.main section.bottom .swiper.advertising .swiper-control .swiper-pagination .swiper-pagination-bullet-active { width: 1rem; background: #FAFF00; border-radius: 0.1875rem; }
+main.main section.bottom .swiper.advertising .swiper-control .btn-stop { display: inline-block; width: 1rem; height: 1rem; background: url('../img/icon_stop.png') no-repeat center/contain; position: absolute; top: 0.475rem; right: -1.375rem; } /* 230612 수정 */
+main.main section.bottom .swiper.advertising .swiper-control .btn-stop.on { background: url('../img/icon_play.png') no-repeat center/contain; } /* 230612 재생버튼 추가 */
+
+/* 단지 목록 - pc */
+main.apt-list section { display: block; }
+main.apt-list section > div { width: 100%; }
+main.apt-list section > div + div { margin-left: 0; }
+main.apt-list section.top { width: 100%; }
+main.apt-list section.top .tit-area > strong { display: inline-block; font-size: 1.42857rem; line-height: 1.5rem; }
+main.apt-list section.top .tit-area + .contents-area { margin-top: 2rem; }
+main.apt-list section.top .contents-area { display: flex; align-items: start; }
+main.apt-list section.top .contents-area > div { width: 36.375rem; } /* 230708 수정 */
+main.apt-list section.top .contents-area > div.btns-and-tag-area { width: 100%; }
+main.apt-list section.top .contents-area > div + div { margin-left: 2.25rem; } /* 230708 수정 */
+main.apt-list section.top .btns-area { width: 100%; }
+main.apt-list section.top .btns-area > button { display: inline-block; padding: 0.75rem 1.875rem; background: #333333; border-radius: 0.5rem; text-align: center; display: flex; justify-content: space-between; align-items: center; width: 17.625rem; height: 7.75rem; } /* 230708 수정 */
+main.apt-list section.top .btns-area button > span.icon-area { margin: 0; }
+main.apt-list section.top .btns-area > button { padding: 2.75rem 1.5rem; }
+main.apt-list section.top .btns-area button > span { font-size: 1.125rem; }
+main.apt-list section.top .tag-scroll-area { width: 100%; overflow-x: auto; overflow-y: hidden; -ms-overflow-style: none; scrollbar-width: none; }
+main.apt-list section.top .tag-scroll-area::-webkit-scrollbar { display: none; }
+main.apt-list section.top .tag-scroll-area .tag-area { width: auto; height: 2.5rem; overflow-x: scroll; display: flex; align-items: center; -ms-overflow-style: none; scrollbar-width: none; margin-top: 1.25rem; }
+main.apt-list section.top .tag-scroll-area .tag-area::-webkit-scrollbar { display: none; }
+main.apt-list section.top .tag-scroll-area .tag { height: 2.5rem; background: #141414; border-radius: 1.875rem; font-size: 0.875rem; line-height: 1.25rem; color: #C8C8C8; position: relative; padding: 0 3rem 0 1.25rem; text-align: left; }
+main.apt-list section.top .tag-scroll-area .tag > span { display: inline-block; width: 100%; line-height: 2.5rem; }
+main.apt-list section.top .tag-scroll-area .tag + .tag { margin-left: .5rem; }
+main.apt-list section.top .tag-scroll-area .btn-tag-close { display: inline-block; width: 1rem; height: 1rem; background: url('../img/btn-h40-close.png') no-repeat center/0.625rem 0.625rem; position: absolute; top: 0.75rem; right: 1rem; }
+
+main.apt-list section.top + section.middle { margin-top: 2.5rem; }
+main.apt-list section.middle .tab-area { width: 100%; }
+main.apt-list section.middle .tab-area > .tab-tit-area { display: block; width: 100%; border-bottom: 1px solid #393939; }
+main.apt-list section.middle .tab-area > .tab-tit-area > li { display: inline-block; }
+main.apt-list section.middle .tab-area > .tab-tit-area > li + li { margin-left: 2.5rem; }
+main.apt-list section.middle .tab-area > .tab-tit-area > li .btn-tab span { display: inline-block; width: 100%; font-size: 1.125rem; font-weight: 500; line-height: 1.125rem; color: #737373; padding-bottom: 1.25rem; }
+main.apt-list section.middle .tab-area > .tab-tit-area > li .btn-tab.on { border-bottom: 0.1875rem solid #FAFF00; }
+main.apt-list section.middle .tab-area > .tab-tit-area > li .btn-tab.on span { font-weight: 700; color: #FAFF00; }
+main.apt-list section.middle .tab-area > .tab-content-area { width: 100%; margin-top: 2.5rem; }
+main.apt-list section.middle .tab-area > .tab-content-area > .paragraph { display: flex; align-items: start; flex-wrap: wrap; width: 1240px; } /* 230708 수정 */
+main.apt-list section.middle .tab-area > .tab-content-area > .paragraph + .paragraph { margin-top: 2.25rem; }
+main.apt-list section.middle .tab-area > .tab-content-area > .paragraph > li { } /* 230708 수정*/
+main.apt-list section.middle .tab-area > .tab-content-area > .paragraph > li:nth-of-type(4n+1) { margin-left: 0; }
+main.apt-list section.middle .tab-area > .tab-content-area > .paragraph > li:nth-of-type(n+5) { margin-top: 2.25rem; }
+main.apt-list section.middle .tab-area > .tab-content-area > .paragraph > li + li { margin-left: 3%; }
+main.apt-list section.middle .tab-area > .tab-content-area > .paragraph > li .icon-and-img-area { position: relative; }
+main.apt-list section.middle .tab-area > .tab-content-area > .paragraph > li .state { position: absolute; top: 0.75rem; left: 0.75rem; }
+main.apt-list section.middle .tab-area > .tab-content-area > .paragraph > li .apt { width: 1.5rem; height: 1.5rem; position: absolute; top: 0.75rem; right: 0.75rem; }
+main.apt-list section.middle .tab-area > .tab-content-area > .paragraph > li .txt-area { display: block; width: 100%; margin-top: 0.75rem; }
+main.apt-list section.middle .tab-area > .tab-content-area > .paragraph > li .txt-area > .tit { display: block; font-size: 1.125rem; font-weight: 700; line-height: 1.5; color: #D2D2D2; }
+main.apt-list section.middle .tab-area > .tab-content-area > .paragraph > li .txt-area > .detail { display: block; font-size: 0.875rem; font-weight: 400; line-height: 1.5; color: #737373; padding-top: 0.25rem; }
+main.apt-list section.middle .tab-area > .tab-content-area > .paragraph > li .txt-area > .price { display: block; font-size: 1rem; line-height: 1.5; color: #A5A5A5; padding-top: 0.5rem; letter-spacing: -0.4px; }
+main.apt-list section.middle .tab-area > .tab-content-area .btn-more-area { margin-top: 5rem; text-align: center; width: 1240px; } /* 230708 수정 */
+main.apt-list section.middle .tab-area > .tab-content-area .btn-more-area .btn-more { width: 17.0625rem; height: 3rem; background: #FAFF00; border-radius: 0.5rem; text-align: center; padding: 0 1rem; }
+main.apt-list section.middle .tab-area > .tab-content-area .btn-more-area .btn-more > span { display: inline-block; width: 100%; font-size: 0.9375rem; font-weight: 700; line-height: 3rem; color: #393939; }
+main.apt-list section.middle .tab-area > .tab-content-area .btn-more-area .btn-more > span::after { content: ''; display: inline-block; width: 1rem; height: 1rem; background: url('../img/icon_down.png') no-repeat center/contain; margin-left: 0.25rem; vertical-align: middle; }
+
+main.apt-list section.bottom { padding-bottom: 5rem; }
+main.apt-list section.bottom .ad-area { width: 100%; border-radius: 0.5rem; }
+main.apt-list section.bottom .ad-area > a { display: block; width: 100%; }
+main.apt-list section.bottom .ad-area > a > .img-area { position: relative; display: block; padding-bottom: 15.5%; overflow: hidden; width: 75rem; height: 11.625rem; } /* 230708 수정 */
+main.apt-list section.bottom .ad-area > a > .img-area > img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+/* 단지 상세 - pc */
+main.apt-detail section { display: block; }
+main.apt-detail section.top { padding-top: 0; }
+main.apt-detail section div + div { margin-left: 0; }
+main.apt-detail section.left + section.right { margin-top: 0; }
+main.apt-detail .flex-area { display: flex; align-items: start; margin-top: 2.5rem; width: 1240px; } /* 230708 수정 */
+main.apt-detail .flex-area section.left { width: 65%; height: 100%; }
+main.apt-detail .flex-area section.left .pre-img-area { width: 100%; width: 49.25rem; } /* 230708 수정 */
+main.apt-detail .flex-area section.left .pre-img-area .big-img-area { position: relative; }
+main.apt-detail .flex-area section.left .pre-img-area .big-img-area + .small-img-area { margin-top: 2.125rem; }
+main.apt-detail .flex-area section.left .big-img-area > .img-area { display: block; width: 49.25rem; height: 36.875rem; } /* 230708 수정 */
+main.apt-detail .flex-area section.left .big-img-area > .img-area > img { height: 100%; } /* 230708 수정 */
+main.apt-detail .flex-area section.left .small-img-scroll-area { width: 100%; margin-top: 2rem; }
+main.apt-detail .flex-area section.left .pre-img-area .small-img-area { font-size: 0; }
+main.apt-detail .flex-area section.left .pre-img-area .small-img-area .img-area { display: block; width: 11.4375rem; height: 8.5625rem; } /* 230708 수정 */
+main.apt-detail .flex-area section.left .pre-img-area .small-img-area .img-area > img { height: 100%; } /* 230708 수정 */
+main.apt-detail .flex-area section.left .pre-img-area .small-img-area > li { display: block; display: inline-block; width: calc((100% - 9%)/4); height: 100%; } /* 230614 수정 */
+main.apt-detail .flex-area section.left .pre-img-area .small-img-area > li + li { margin-left: 3%; } /* 230614 수정 */
+main.apt-detail .flex-area section.left .pre-img-area .small-img-area > li > a { display: block; }
+main.apt-detail .flex-area section.left > .info-area { width: 100%; margin-top: 5rem; }
+main.apt-detail .flex-area section.left > .info-area .tit { font-size: 1.25rem; }
+main.apt-detail .flex-area section.left > .info-area.basic .tit + .whole-table-area { margin-top: 1.5rem; }
+
+/* 단지상세 테이블 공통 */
+main.apt-detail .flex-area section.left .whole-table-area { width: 100%; overflow: hidden; }
+main.apt-detail .flex-area section.left .whole-table-area::after { content: ''; display: block; clear: both; }
+main.apt-detail .flex-area section.left .whole-table-area .row { width: 100%; display: block; float: left; }
+main.apt-detail .flex-area section.left .whole-table-area .row:nth-of-type(1) { border-top: 1px solid #2A2D32; }
+main.apt-detail .flex-area section.left .whole-table-area .row::after { content: ''; display: block; clear: both; }
+main.apt-detail .flex-area section.left .whole-table-area .row .left { display: table; width: 50%; border-bottom: 1px solid #2A2D32; float: left; }
+main.apt-detail .flex-area section.left .whole-table-area .row .left.w100 { width: 100%; }
+main.apt-detail .flex-area section.left .whole-table-area .row .left.h80 .th { height: 5rem; }
+main.apt-detail .flex-area section.left .whole-table-area .row .left.h80 .td { height: 5rem; }
+main.apt-detail .flex-area section.left .whole-table-area .row .left::after { content: ''; display: block; clear: both; }
+main.apt-detail .flex-area section.left .whole-table-area .row .left .th { display: table-cell; vertical-align: middle; width: 6.4375rem; height: 4rem; background: #262829; padding: 0.5rem 0.25rem 0.5rem 0.75rem; font-size: 0.9375rem; color: #A5A5A5; } /* 230708 수정 */
+main.apt-detail .flex-area section.left .whole-table-area .row .left .td { display: table-cell; vertical-align: middle; width: calc(100% - 6.4375rem); padding: 0.5rem 0.25rem 0.5rem 0.75rem; font-size: 0.9375rem; color: #D2D2D2; word-break: break-all; } /* 230708 수정 */
+main.apt-detail .flex-area section.left .whole-table-area .row .right { display: table; width: 50%; border-bottom: 1px solid #2A2D32; float: left; }
+main.apt-detail .flex-area section.left .whole-table-area .row .right .th { display: table-cell; vertical-align: middle; width: 6.4375rem; height: 4rem; background: #262829; padding: 0.5rem 0.25rem 0.5rem 0.75rem; font-size: 0.9375rem; color: #A5A5A5; } /* 230708 수정 */
+main.apt-detail .flex-area section.left .whole-table-area .row .right .td { display: table-cell; vertical-align: middle; width: calc(100% - 6.4375rem); padding: 0.5rem 0.25rem 0.5rem 0.75rem; font-size: 0.9375rem; color: #D2D2D2; word-break: break-all; } /* 230708 수정 */
+/* // 단지상세 테이블 공통 */
+
+main.apt-detail .flex-area section.left > .info-area.place { width: 100%; margin-top: 5rem; }
+main.apt-detail .flex-area section.left > .info-area.place .map-area { width: 100%; margin-top: 1.5rem; }
+main.apt-detail .flex-area section.left > .info-area.place .map-area .map-box { width: 100%; max-width: 787px; position: relative; }
+main.apt-detail .flex-area section.left > .info-area.place .map-area .map-box > div { width: 100%; padding-bottom: 55.90%; }
+main.apt-detail .flex-area section.left > .info-area.place .map-area .map-box > div iframe { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1; }
+main.apt-detail .flex-area section.left > .info-area.place .map-area + .whole-table-area { margin-top: 1.5rem; }
+main.apt-detail .flex-area section.left > .info-area.place .whole-table-area { width: 100%; }
+
+main.apt-detail .flex-area section.left > .info-area.space { width: 100%; }
+main.apt-detail .flex-area section.left > .info-area.space .tit + .tab-area { margin-top: 2.625rem; }
+main.apt-detail .flex-area section.left > .info-area.space .tab-area { width: 100%; }
+main.apt-detail .flex-area section.left > .info-area.space .tab-area .tab-tit-scroll-area { width: 100%; overflow-x: auto; overflow-y: hidden; cursor: pointer; }
+main.apt-detail .flex-area section.left > .info-area.space .tab-area .tab-tit-area { width: auto; overflow-x: scroll; display: flex; align-items: center; border-bottom: 1px solid #393939; }
+main.apt-detail .flex-area section.left > .info-area.space .tab-area .tab-tit-area::-webkit-scrollbar { display: none; }
+main.apt-detail .flex-area section.left > .info-area.space .tab-area .tab-tit-area > li { display: block; height: 41px; background: burlywood; line-height: 41px; padding: 0 1rem; }
+main.apt-detail .flex-area section.left > .info-area.space .tab-area .tab-tit-area > li + li { margin-left: 1.71428rem; }
+main.apt-detail .flex-area section.left > .info-area.space .tab-area .tab-tit-area > li .btn-tab { font-size: 1.125rem; font-weight: 400; line-height: 1; color: #737373; }
+main.apt-detail .flex-area section.left > .info-area.space .tab-area .tab-tit-area > li .btn-tab.on { font-weight: 700; color: #FAFF00; border-bottom: 0.1875rem solid #FAFF00; }
+main.apt-detail .flex-area section.left > .info-area.space .tab-area .tab-tit-area > li .btn-tab > span { display: inline-block; width: 100%; padding-bottom: 1.25rem; }
+main.apt-detail .flex-area section.left > .info-area.space .tab-area .tab-tit-area .btn-tab { display: block; width: 100%; font-size: 1.125rem; font-weight: 400; line-height: 1; color: #737373; padding-bottom: 1.25rem; text-align: left; }
+main.apt-detail .flex-area section.left > .info-area.space .tab-area .tab-tit-area .btn-tab + .btn-tab { margin-left: 1.71428rem; }
+main.apt-detail .flex-area section.left > .info-area.space .tab-area .tab-tit-area .btn-tab.on { font-weight: 700; color: #FAFF00; border-bottom: 0.1875rem solid #FAFF00; }
+main.apt-detail .flex-area section.left > .info-area.space .tab-area .tab-tit-area .btn-tab > span { display: inline-block; width: 100%; white-space: nowrap; }
+
+main.apt-detail .flex-area section.left > .info-area.space .tab-content-area { margin-top: 1.5rem; }
+main.apt-detail .flex-area section.left > .info-area.space .tab-content-area .space-img-area { background: #FFFFFF; text-align: center; width: 49.25rem; height: 27.5rem; } /* 230708 수정 */
+main.apt-detail .flex-area section.left > .info-area.space .tab-content-area .space-img-area > img { display: block; height: 100%; object-fit: cover; }
+main.apt-detail .flex-area section.left > .info-area.space .tab-content-area .space-img-area > img.mo-only { display: none; }
+main.apt-detail .flex-area section.left > .info-area.space .tab-content-area .space-img-area + .whole-table-area { margin-top: 1.5rem; }
+
+main.apt-detail .flex-area section.left + section.right { margin-left: 4%; }
+main.apt-detail .flex-area section.right { position: sticky; top: 0; width: 23.5625rem; height: 29.375rem; } /* 230708 수정 */
+main.apt-detail .flex-area section.right .card-area { width: 100%; background: #2A2D32; padding: 2rem 1.25rem; }
+main.apt-detail .flex-area section.right .card-area .state { padding: 0.375rem 0.625rem; font-size: 0.8125rem; border-radius: 1.25rem; }
+main.apt-detail .flex-area section.right .card-area .tit-area strong .apt { width: 1.5rem; height: 1.5rem; margin-right: 0.5rem; vertical-align: middle; }
+main.apt-detail .flex-area section.right .card-area .tit-area { margin-top: 1.5rem; }
+main.apt-detail .flex-area section.right .card-area .tit-area strong { display: inline-block; font-size: 1.5rem; font-weight: 700; vertical-align: middle; }
+main.apt-detail .flex-area section.right .card-area .tit-area .detail { display: block; font-size: 0.875rem; font-weight: 400; margin-top: 0.75rem; color: #898989; }
+main.apt-detail .flex-area section.right .card-area .price-area { margin-top: 1.5rem; }
+main.apt-detail .flex-area section.right .card-area .price-area .tit { display: block; font-size: 0.8125rem; font-weight: 400; color: #737373; }
+main.apt-detail .flex-area section.right .card-area .price-area .price { display: inline-block; font-size: 1.25rem; font-weight: 700; }
+main.apt-detail .flex-area section.right .card-area .price-area .price .per { display: inline-block; font-size: 0.8125rem; font-weight: 400; color: #737373; margin-left: 0.3125rem; }
+main.apt-detail .flex-area section.right .card-area .btns-area { margin-top: 1.5rem; display: flex; align-items: center; }
+main.apt-detail .flex-area section.right .card-area .btns-area > button { display: block; height: 3rem; font-size: 0.9375rem; font-weight: 700; line-height: 3rem; padding: 0 0.5rem; text-align: center; border-radius: 0.5rem; box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2); }
+main.apt-detail .flex-area section.right .card-area .btns-area .btn-gray { width: 28%; background: #434343; color: #E2E2E2; }
+main.apt-detail .flex-area section.right .card-area .btns-area .btn-gray + .btn-yellow { margin-left: 2.7%; }
+main.apt-detail .flex-area section.right .card-area .btns-area .btn-yellow { width: calc(100% - 30.7%); background: #FAFF00; color: #393939; }
+main.apt-detail .flex-area section.right .btn-download { display: block; width: 100%; height: 3rem; font-size: 0.9375rem; line-height: 3rem; background: #222222; margin-top: 1.5rem; padding: 0 1.125rem; border-radius: 0.5rem; border: 1px solid #606060; }
+
+main.apt-detail section.bottom { padding-bottom: 5rem; margin-top: 5rem; }
+main.apt-detail section.bottom .ad-area { width: 100%; border-radius: 0.5rem; }
+main.apt-detail section.bottom .ad-area > a { display: block; width: 100%; }
+main.apt-detail section.bottom .ad-area > a > .img-area { display: block; width: 75rem; height: 11.625rem; } /* 230708 수정 */
+main.apt-detail section.bottom .ad-area > a > .img-area > img { height: 100%; }
+
+/* 팝업 */
+/* 팝업 공통 */
+.popup { position: fixed; width: 100%; height: 100vh; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, .6); overflow: auto; z-index: 10; min-width: 320px; }
+.popup .popup-area { width: 25rem; height: 38.875rem; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: .5rem; overflow: hidden; background: #222; }
+.popup .popup-header { width: 100%; height: 3rem; background: #222222; border-bottom: 2px solid #30353F; text-align: center; }
+.popup .popup-header > .popup-tit { display: inline-block; font-size: 1rem; font-weight: 700; line-height: 3rem; }
+.popup .popup-footer { width: 100%; height: 9rem; position: relative; background: #222222; text-align: center; }
+.popup .popup-footer .btn-select-area { width: 100%; height: 5.5rem; padding: 1rem 0.75rem; text-align: center; }
+.popup .popup-footer .btn-select-area .btn-gray { display: inline-block; width: 6.75rem; height: 3rem; padding: 0 1.25rem; border-radius: .5rem; text-align: center; background: #434343; }
+.popup .popup-footer .btn-select-area .btn-gray > span { font-size: 1rem; font-weight: 700; line-height: 1rem; color: #fff; }
+.popup .popup-footer .btn-select-area .btn-gray + .btn-yellow { margin-left: 0.6875rem; }
+.popup .popup-footer .btn-select-area .btn-yellow { display: inline-block; width: 15.5rem; height: 3rem; padding: 0 1.25rem; border-radius: .5rem; text-align: center; background: #FAFF00; }
+.popup .popup-footer .btn-select-area .btn-yellow > span { font-size: 1rem; font-weight: 700; line-height: 1rem; color: #393939; }
+.popup .btn-popup-close { width: 1.5rem; height: 1.5rem; background: url('../img/btn-popup-close.png') no-repeat center/contain; position: absolute; top: 0.75rem; right: 0.75rem; }
+
+/* 지역 검색 팝업, 브랜드 검색 팝업 */
+.popup.choice .popup-footer .btn-scroll-area { width: 100%; height: 3.5rem; box-shadow: 0 -0.1875rem 0.625rem -0.1875rem rgba(0, 0, 0, .6); background: #222; padding: 1rem 0 0 1.25rem; overflow-x: auto; overflow-y: hidden; -ms-overflow-style: none; scrollbar-width: none; }
+.popup.choice .popup-footer .btn-scroll-area::-webkit-scrollbar { display: none; }
+.popup.choice .popup-footer .btn-scroll-area .btn-h40-area { width: auto; height: 2.5rem; overflow-x: scroll; display: flex; align-items: center; -ms-overflow-style: none; scrollbar-width: none; }
+.popup.choice .popup-footer .btn-scroll-area .btn-h40-area::-webkit-scrollbar { display: none; }
+.popup.choice .popup-footer .btn-scroll-area .btn-h40 { height: 2.5rem; background: #141414; border-radius: 1.875rem; font-size: 0.875rem; line-height: 1.25rem; color: #C8C8C8; position: relative; padding: 0 3rem 0 1.25rem; text-align: left; }
+.popup.choice .popup-footer .btn-scroll-area .btn-h40:last-of-type { margin-right: 1.25rem; }
+.popup.choice .popup-footer .btn-scroll-area .btn-h40 > span { display: inline-block; width: 100%; line-height: 2.5rem; }
+.popup.choice .popup-footer .btn-scroll-area .btn-h40 + .btn-h40 { margin-left: .5rem; }
+.popup.choice .popup-footer .btn-scroll-area .btn-h40-close { display: inline-block; width: 1rem; height: 1rem; background: url('../img/btn-h40-close.png') no-repeat center/0.625rem 0.625rem; position: absolute; top: 0.75rem; right: 1rem; }
+
+.popup.choice .popup-body { width: 100%; display: flex; align-items: center; }
+.popup.choice .popup-body .left-area,
+.popup.choice .popup-body .right-area { width: 50%; height: 26.875rem; overflow-y: auto; -ms-overflow-style: none; scrollbar-width: none; border-right: 1px solid #30353F; }
+.popup.choice .popup-body .left-area::-webkit-scrollbar,
+.popup.choice .popup-body .right-area::-webkit-scrollbar { display: none; }
+.popup.choice .popup-body .left-area .btn-rect-area,
+.popup.choice .popup-body .right-area .btn-rect-area { overflow-y: scroll; }
+.popup.choice .popup-body .left-area .btn-rect-area::-webkit-scrollbar,
+.popup.choice .popup-body .right-area .btn-rect-area::-webkit-scrollbar { display: none; }
+.popup.choice .popup-body .left-area .btn-rect-area li .btn-rect,
+.popup.choice .popup-body .right-area .btn-rect-area li .btn-rect { width: 100%; height: 3rem; font-size: 1rem; color: #fff; font-weight: 400; }
+.popup.choice .popup-body .left-area .btn-rect-area li.on .btn-rect,
+.popup.choice .popup-body .right-area .btn-rect-area li.on .btn-rect { background: #2A2D32; }
+
+@media all and (max-width: 1024px) {
+  /* 메인 */
+  main.main section.top > .btns-area > button { padding: 0.75rem 0.75rem; }
+  main.apt-list section.top .btns-area > button { padding: 1.25rem 1rem; }
+  
+  /* 단지 상세 - pc */
+  main.apt-detail .flex-area section.right .card-area .btns-area .btn-gray { width: 48%; }
+  main.apt-detail .flex-area section.right .card-area .btns-area .btn-yellow { width: 55%; }
+  main.apt-detail .flex-area section.left > .info-area .table-area table tbody tr { height: 4.8rem; }
+  main.apt-detail .flex-area section.left > .info-area .bottom-table-area table tbody tr { height: 4.8rem; }
+
+  /* 단지상세 테이블 공통 */
+  main.apt-detail .flex-area section.left .whole-table-area .row .left .th { height: 4.9375rem; }
+  main.apt-detail .flex-area section.left .whole-table-area .row .right .th { height: 4.9375rem; }
+  main.apt-detail .flex-area section.left .whole-table-area .row .left .td { padding: 0.5rem 0.125rem 0.5rem 0.5rem; }
+  main.apt-detail .flex-area section.left .whole-table-area .row .right .td { padding: 0.5rem 0.125rem 0.5rem 0.5rem; }
+  /* // 단지상세 테이블 공통 */
+}
+
+@media all and (max-width: 720px) {
+  html { font-size: 14px; }
+
+  /* 공통 - mo */
+  .pc-only { display: none !important; }
+  .mo-only { display: block !important; }
+
+  header { height: 3.42857rem; }
+  header h1 .img-area { width: 4.07142rem; height: 1.71428rem; }
+  header h1 .img-area > img { vertical-align: middle; }
+
+  footer .inner { display: block; width: 100%; }
+  footer .btn-sns-area { position: static; width: 100%; margin-top: 1.71428rem; }
+  footer .btn-sns-area > .btn-sns { display: inline-block; width: 2.57142rem; height: 2.57142rem; }
+
+  main .state { border-radius: 0.71428rem; font-size: 0.78571rem; }
+  main .txt-icon-area > .state { vertical-align: middle; }
+  main .txt-icon-area > .apt { width: 1.42857rem; height: 1.42857rem; margin-left: 0.28571rem; vertical-align: middle; }
+
+  /* 메인 - mo */
+  main .apt-img-area.medium { width: 100%; height: 14.57142rem; } /* 230708 수정 */
+  main .icon-and-img-area.medium { width: 100%; } /* 230708 수정 */
+  main.main .inner { padding: 0; }
+  main.main section { display: block; width: 100%; }
+  main.main section + section { margin-top: 2.85714rem; }
+  main.main section > div { width: 100%; }
+  main.main section > div + div { margin-left: 0; margin-top: 2.85714rem; }
+  
+  main.main section.top { padding-top: 1.42857rem; }
+  main.main section.top > div + div { margin-top: 1.42857rem; }
+  main.main section.top > .btns-area { width: 100%; padding: 0 1.42857rem; }
+  main.main section.top .btns-area > button { height: 5.92857rem; padding: 1.14285rem 0.5rem; width: 33%; } /* 230708 수정 */
+  main.main section.top .btns-area button > span { font-size: 1.07142rem; line-height: 1; }
+  main.main section.top .btns-area button > span.icon-area { width: 1.71428rem; height: 1.71428rem; margin: 0 auto 0.85714rem; }
+  main.main section.top .swiper.banner .swiper-slide { height: auto; border-radius: 0; overflow: hidden; }
+  main.main section.top .swiper.banner .swiper-slide > a { display: block; width: 100%; height: auto; } /* 230708 수정 */
+  
+  main.main section.top + section.middle { margin-top: 1.14285rem; }
+  main.main section.middle .left-area .tit-area { padding: 0 1.42857rem; }
+  main.main section.middle .tit-area strong { font-size: 1.4285rem; line-height: 2.28571rem; }
+  main.main section.middle .tit-area a.link { width: 2.28571rem; height: 2.28571rem; }
+  main.main section.middle .tit-area + .swiper-area { margin-top: 1.14285rem; }
+  main.main section.middle .swiper .swiper-slide .img-area > .state { top: 0.57142rem; left: 0.57142rem; }
+  main.main section.middle .swiper .swiper-slide .img-area > .state.sale { width: 3.35714rem; height: 1.42857rem; }
+  main.main section.middle .swiper .swiper-slide .img-area > .state.scheduled { width: 4.07142rem; height: 1.42857rem; }
+  main.main section.middle .swiper .swiper-slide .img-area > .state.imminent { width: 4.07142rem; height: 1.42857rem; }
+  main.main section.middle .swiper .swiper-slide .img-area > .apt { width: 1.42857rem; height: 1.42857rem; top: 0.57142rem; right: 0.57142rem; }
+  main.main section.middle .swiper-area.recent { overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; }
+  main.main section.middle .swiper-area.recent::-webkit-scrollbar { display: none; } 
+  main.main section.middle .swiper.recent { width: 100%; overflow-x: scroll; margin: 0 1.42857rem; -ms-overflow-style: none; scrollbar-width: none; }
+  main.main section.middle .swiper.recent::-webkit-scrollbar { display: none; }
+  main.main section.middle .swiper.recent .swiper-slide { width: 43%; }
+  main.main section.middle .swiper.recent .swiper-slide > a { width: 100%; } /* 230708 수정 */
+  main.main section.middle .swiper.recent .swiper-slide .icon-and-img-area { width: 100%; } /* 230708 수정 */
+  main.main section.middle .swiper.recent .swiper-slide .icon-and-img-area .apt-img-area { width: 100%; height: 14.57142rem; } /* 230708 수정 */
+  main.main section.middle .swiper.recent .swiper-slide + .swiper-slide { margin-left: 2.5%; }
+  main.main section.middle .swiper.recent .swiper-slide .img-area { display: block; }
+  main.main section.middle .swiper.recent .swiper-slide .txt-area { margin-top: 0.28571rem; }
+  main.main section.middle .swiper.recent .swiper-slide .txt-area > .tit { font-size: 1.14285rem; line-height: 1.5; }
+  main.main section.middle .swiper.recent .swiper-slide .txt-area > .detail { font-size: 0.85714rem; line-height: 1; margin-top: 0.28571rem; }
+  main.main section.middle .swiper.recent .swiper-slide .txt-area > .price { font-size: 1rem; line-height: 1; margin-top: 0.57142rem; }
+  main.main section.middle .swiper.recent .swiper-wrapper { padding-bottom: 0; }
+
+  main.main section.middle .right-area { padding: 2.85714rem 1.42857rem; background: #2A2D32; }
+  main.main section.middle .swiper.popularMo { margin-top: 1.14285rem; width: 100%; overflow: hidden; }
+  main.main section.middle .swiper.popularMo .swiper-slide > ul > li + li { margin-top: 1.14285rem; }
+  main.main section.middle .swiper.popularMo .swiper-slide > ul > li > a { display: table; width: 100%; }
+  main.main section.middle .swiper.popularMo .swiper-slide > ul > li > a > .img-area { display: table-cell; width: 33%; vertical-align: middle; border-radius: 0.57142rem; overflow: hidden; height: 7.85714rem; } /* 230708 수정 */
+  main.main section.middle .swiper.popularMo .swiper-slide > ul > li > a > .img-area > img { height: 100%; } /* 230708 수정 */
+  main.main section.middle .swiper.popularMo .swiper-slide > ul > li > a > .txt-area { display: table-cell; width: calc(100% - 33%); height: 6.42857rem; padding-left: 3.5%; vertical-align: middle; }
+  main.main section.middle .swiper.popularMo .swiper-slide > ul > li > a > .txt-area > .tit { display: block; font-size: 1.28571rem; font-weight: 700; line-height: 1.71428rem; margin-top: 0.28571rem; color: #D2D2D2; }
+  main.main section.middle .swiper.popularMo .swiper-slide > ul > li > a > .txt-area > .detail { display: block; font-size: 0.85714rem; font-weight: 400; line-height: 0.85714rem; margin-top: 0.28571rem; color: #737373; }
+  main.main section.middle .swiper.popularMo .swiper-slide > ul > li > a > .txt-area > .price { display: block; font-size: 1rem; font-weight: 500; line-height: 1rem; margin-top: 0.57142rem; color: #A5A5A5; }
+  main.main section.middle .swiper.popularMo .swiper-control { width: 100%; height: 1.71428rem; position: relative; margin-top: 2.28571rem; }
+  main.main section.middle .swiper.popularMo .swiper-control .swiper-pagination { position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 10; }
+  main.main section.middle .swiper.popularMo .swiper-control .swiper-pagination .swiper-pagination-bullet { border: none; width: 0.42857rem; height: 0.42857rem; background: #8F8D51; display: inline-block; border-radius: 50%; margin: 0 0.28571rem !important; opacity: 1; cursor: pointer; }
+  main.main section.middle .swiper.popularMo .swiper-control .swiper-pagination .swiper-pagination-bullet-active { width: 1.14285rem; background: #FAFF00; border-radius: 0.21428rem; }
+
+  main.main section.bottom { padding-bottom: 0; }
+  main.main section.bottom .left-area { padding: 0 1.42857rem; }
+  main.main section.bottom .swiper.advertising .swiper-wrapper { padding-bottom: 0; }
+  main.main section.bottom .swiper.advertising .swiper-slide .img-area { display: block; width: 100%; }
+  main.main section.bottom .contents-area.mo-only { display: block; width: 100%; margin-top: 1.07142rem; }
+  main.main section.bottom .contents-area.mo-only > li .img-area { display: inline-block; width: 100%; height: 23.92857rem; border-radius: 0.57142rem; overflow: hidden; } /* 230708 수정 */
+  main.main section.bottom .contents-area.mo-only > li .img-area.h-auto { height: auto; } /* 230708 수정 */
+  main.main section.bottom .contents-area.mo-only > li .img-area.h-auto > img { height: 100%; } /* 230708 수정 */
+  main.main section.bottom .contents-area.mo-only > li .tit { display: block; font-size: 1.28571rem; line-height: 1.5; color: #fff; margin-top: 0.85714rem; letter-spacing: -0.3px; } /* 230708 수정 */
+  main.main section.bottom .contents-area.mo-only > li .date { display: inline-block; font-size: 0.92857rem; margin-top: 0.85714rem; color: #737373; }
+  main.main section.bottom .tit-area strong { font-size: 1.42857rem; line-height: 2.28571rem; }
+  main.main section.bottom .tit-area a.link { width: 2.28571rem; height: 2.28571rem; }
+
+  /* 단지목록 - mo */
+  main.apt-list section div + div { margin-top: 0; }
+  main.apt-list section.top { padding-top: 0.71428rem; }
+
+  /* 모바일 탑버튼 영역 공통 */
+  main section.top .top-btn-area.mo-only { width: 100%; padding: 0 1.42857rem; display: flex; align-items: center; font-size: 0; }
+  main section.top .top-btn-area.mo-only .btn-rect { display: inline-block; width: 33.33%; height: 2.85714rem; border-radius: 0.57142rem; padding: 0 0.85714rem; }
+  main section.top .top-btn-area.mo-only .btn-rect > span { font-size: 1.07142rem; font-weight: 500; color: #737373; line-height: 2.85714rem; }
+  main section.top .top-btn-area.mo-only .btn-rect.on { background: #FAFF00; }
+  main section.top .top-btn-area.mo-only .btn-rect.on > span { font-weight: 700; color: #000; }
+  /* // 모바일 탑버튼 영역 공통 */
+
+  main.apt-list section.top .tit-area { font-size: 1.42857rem; padding: 2.85714rem 1.42857rem 0; margin-top: 0; }
+  main.apt-list section.top .tit-area + .contents-area { margin-top: 1.42857rem; }
+  main.apt-list section.top .contents-area { display: block; width: 100%; }
+  main.apt-list section.top .contents-area > div { width: 100%; position: relative; }
+  main.apt-list section.top .contents-area .btns-area { display: flex; width: 100%; padding: 0 1.42857rem 3.35714rem; }
+  main.apt-list section.top .contents-area .btns-area > button { width: 100%; height: 4.57142rem; padding: 0 1.14285rem; display: flex; justify-content: space-between; align-items: center; }
+  main.apt-list section.top .btns-area button > span { font-size: 1.07142rem; }
+  main.apt-list section.top .btns-area button > span.icon-area { width: 1.71428rem; height: 1.71428rem; margin: 0; }
+  main.apt-list section.top .contents-area .swiper-area { display: block; width: 100%; margin-left: 0; margin-top: 1.42857rem; }
+  main.apt-list section.top .tag-scroll-area { padding: 0 1.42857rem; position: absolute; bottom: 0; left: 0; }
+
+  main.apt-list section.top + section.middle { margin-top: 1.42857rem; }
+  main.apt-list section.middle .tab-area > .tab-tit-area { padding: 0 1.42857rem; }
+  main.apt-list section.middle .tab-area > .tab-tit-area > li + li { margin-left: 1.71428rem; }
+  main.apt-list section.middle .tab-area > .tab-content-area { padding: 0 1.42857rem; margin-top: 1.14285rem; }
+  main.apt-list section.middle .tab-area > .tab-content-area > .paragraph { width: 100%; } /* 230708 수정 */
+  main.apt-list section.middle .tab-area > .tab-content-area > .paragraph > li { width: 48.65671%; }
+  main.apt-list section.middle .tab-area > .tab-content-area > .paragraph > li + li { margin-left: 2.68656%; }
+  main.apt-list section.middle .tab-area > .tab-content-area > .paragraph > li .state { top: 0.5rem; left: 0.5rem; }
+  main.apt-list section.middle .tab-area > .tab-content-area > .paragraph > li .apt { top: 0.5rem; right: 0.5rem; }
+  main.apt-list section.middle .tab-area > .tab-content-area > .paragraph > li .txt-area { margin-top: 0.28571rem; }
+  main.apt-list section.middle .tab-area > .tab-content-area > .paragraph > li .txt-area > .tit { font-size: 1.14285rem; letter-spacing: -0.3px; }
+  main.apt-list section.middle .tab-area > .tab-content-area > .paragraph > li:nth-of-type(odd) { margin-left: 0; }
+  main.apt-list section.middle .tab-area > .tab-content-area > .paragraph > li:nth-of-type(3),
+  main.apt-list section.middle .tab-area > .tab-content-area > .paragraph > li:nth-of-type(4) { margin-top: 1.71428rem; }
+  main.apt-list section.middle .tab-area > .tab-content-area .btn-more-area { margin-top: 1.5rem; width: 100%; } /* 230708 수정 */
+  main.apt-list section.middle .tab-area > .tab-content-area .btn-more-area .btn-more { width: 100%; height: 3.42857rem; }
+  main.apt-list section.middle .tab-area > .tab-content-area .btn-more-area .btn-more > span { display: inline-block; width: 100%; font-size: 1.07142rem; font-weight: 700; line-height: 3.42857rem; color: #393939; }
+  main.apt-list section.middle + section.bottom { margin-top: 2.85714rem; }
+  main.apt-list section.bottom .ad-area > a > .img-area { padding-bottom: 49.46%; width: 100%; height: auto; } /* 230708 수정 */
+
+  /* 단지상세 - mo */
+  main.apt-detail { padding-bottom: 0; }
+  main.apt-detail .flex-area { display: block; width: 100%; margin-top: 0.71428rem; }
+  main.apt-detail .flex-area section.left { width: 100%; }
+  main.apt-detail .flex-area section.left .pre-img-area { width: 100%; } /* 230708 수정 */
+  main.apt-detail .flex-area section.left .big-img-area > .img-area { width: 100%; height: auto; } /* 230708 수정 */
+  main.apt-detail .flex-area section.left .pre-img-area .small-img-scroll-area { width: 100%; margin-top: 1.42857rem; overflow-x: auto; }
+  main.apt-detail .flex-area section.left .pre-img-area .small-img-scroll-area::-webkit-scrollbar { display: none; }
+  main.apt-detail .flex-area section.left .pre-img-area .small-img-area { width: 120%; height: 100%; overflow-x: scroll; display: flex; align-items: center; padding: 0 1.42857rem; margin-right: -1.42857rem; } /* 230614 수정 */
+  main.apt-detail .flex-area section.left .pre-img-area .small-img-area::-webkit-scrollbar { display: none; }
+  main.apt-detail .flex-area section.left .pre-img-area .small-img-area > li { display: block; width: 100% }
+  main.apt-detail .flex-area section.left .pre-img-area .small-img-area > li > button .img-area { display: block; width: 100%; height: 100%; }
+  main.apt-detail .flex-area section.left .pre-img-area .small-img-area > li + li { margin-left: 0.85714rem; }
+
+  main.apt-detail section > div.pre-img-area + div.card-area.mo-only { margin-top: 1.42857rem; }
+  main.apt-detail .flex-area section.left .card-area.mo-only { width: 100%; background: #2A2D32; padding: 1.42857rem 1.42857rem; position: relative; }
+  main.apt-detail .flex-area section.left .card-area.mo-only > .state { position: absolute; top: 1.57142rem; right: 1.28571rem; }
+  main.apt-detail .flex-area section.left .card-area.mo-only .tit-area { font-size: 1.71428rem; font-weight: 700; letter-spacing: -0.3px; }
+  main.apt-detail .flex-area section.left .card-area.mo-only .tit-area strong { display: inline-block; vertical-align: top; font-size: 1.42857rem; font-weight: 700; letter-spacing: -0.3px; }
+  main.apt-detail .flex-area section.left .card-area.mo-only .tit-area > span { display: inline-block; width: 100%; vertical-align: middle; }
+  main.apt-detail .flex-area section.left .card-area.mo-only .tit-area .apt { width: 1.71428rem; height: 1.71428rem; margin-right: 0.57142rem; vertical-align: middle; }
+  main.apt-detail .flex-area section.left .card-area.mo-only .tit-area .detail { display: block; font-size: 0.85714rem; font-weight: 400; letter-spacing: 0; margin-top: 0.28571rem; color: #A4A4A4; }
+  main.apt-detail .flex-area section.left .card-area.mo-only .whole-price-area { width: 100%; display: flex; align-items: center; margin-top: 1.42857rem; }
+  main.apt-detail .flex-area section.left .card-area.mo-only .price-area:nth-of-type(2) { margin-left: 2rem; }
+  main.apt-detail .flex-area section.left .card-area.mo-only .price-area .tit { font-size: 0.78572rem; font-weight: 400; color: #737373; }
+  main.apt-detail .flex-area section.left .card-area.mo-only .price-area .price { display: block; font-size: 1.07142rem; font-weight: 700; color: #FFFFFF; margin-top: 0.57142rem; }
+  main.apt-detail .flex-area section.left .card-area.mo-only .price-area .price .per { font-size: 0.78571rem; font-weight: 400; color: #737373; margin-left: 0.28571rem; }
+  
+  main.apt-detail .flex-area section.left > .info-area { margin-top: 3.42857rem; padding: 0 1.42857rem; }
+  main.apt-detail .flex-area section.left > .info-area.place .map-area .map-box > div { width: 100%; padding-bottom: 59.70%; }
+  main.apt-detail .flex-area section.left > .info-area.space .tab-content-area .space-img-area { width: 100%; height: auto; } /* 230708 수정 */
+
+  /* 단지상세 테이블 공통 */
+  main.apt-detail .flex-area section.left .whole-table-area .row { float: none; }
+  main.apt-detail .flex-area section.left .whole-table-area .row .left { display: table; width: 100%; float: none; }
+  main.apt-detail .flex-area section.left .whole-table-area .row .left.h80 .th { height: 4.57142rem; }
+  main.apt-detail .flex-area section.left .whole-table-area .row .left.h80 .td { height: 4.57142rem; }
+  main.apt-detail .flex-area section.left .whole-table-area .row .left .th { width: 6.28572rem; height: 2.85714rem; padding: 0.57142rem 0.57142rem 0.57142rem 0.85714rem; font-size: 0.92857rem; }
+  main.apt-detail .flex-area section.left .whole-table-area .row .left .td { width: calc(100% - 6.28572rem); padding: 0.57142rem 0.57142rem; font-size: 0.92857rem; }
+  main.apt-detail .flex-area section.left .whole-table-area .row .right { display: table; width: 100%; float: none; }
+  main.apt-detail .flex-area section.left .whole-table-area .row .right .th { width: 6.28572rem; height: 2.85714rem; padding: 0.57142rem 0.57142rem 0.57142rem 0.85714rem; font-size: 0.92857rem; }
+  main.apt-detail .flex-area section.left .whole-table-area .row .right .td { width: calc(100% - 6.28572rem); padding: 0.57142rem 0.57142rem; font-size: 0.92857rem; }
+  /* // 단지상세 테이블 공통 */
+  
+  main.apt-detail .flex-area section.left > .info-area.place { margin-top: 2.85714rem; }
+  main.apt-detail .flex-area section.left .btn-area.download { width: 100%; padding: 0 1.42857rem; }
+  main.apt-detail .flex-area section.left .btn-area.download > .btn-download { display: block; width: 100%; height: 3.42857rem; font-size: 1.07142rem; font-weight: 500; line-height: 3.42857rem; border-radius: 0.57142rem; color: #AAAAAA; border: 1px solid #606060; background: #222222; }
+  main.main section > .info-area + .btn-area.download { margin-top: 2.85714rem; }
+
+  main.apt-detail section.bottom > div + div { margin-top: 0; }
+  main.apt-detail section.bottom { display: block; margin-top: 2.85714rem; }
+  main.apt-detail section.bottom .ad-area > a > .img-area { width: 100%; height: auto; } /* 230708 수정 */
+  main.apt-detail .btns-area.bottom.mo-only { width: 100%; height: 5.71428rem; line-height: 3.42857rem; padding: 0 1.42857rem; display: flex !important; align-items: center; background: #222; position: sticky; bottom: 0; left: 0; z-index: 20; }
+  main.apt-detail .btns-area.bottom.mo-only > button { display: block; height: 3.42857rem; font-size: 1.07142rem; line-height: 3.42857rem; padding: 0 0.5rem; border-radius: 0.5rem; box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2); }
+  main.apt-detail .btns-area.bottom.mo-only .btn-gray { width: 27.5%; background: #434343; font-weight: 700; color: #E2E2E2; }
+  main.apt-detail .btns-area.bottom.mo-only .btn-yellow { width: 70%; background: #FAFF00; margin-left: 2.5%; font-weight: 700; color: #393939; }
+}
+
+@media all and (max-width: 575px) {
+  /* 팝업 */
+  /* 팝업 공통 */
+  .popup .popup-area { width: 100%; height: auto; position: absolute; top: 0; left: 0; transform: none; border-radius: 0; overflow: hidden; background: #222; }
+  .popup .popup-header { height: 3.42857rem; }
+  .popup .popup-header > .popup-tit { font-size: 1.07142rem; }
+  .popup .popup-footer { height: 8.57142rem; }
+  .popup .popup-footer .btn-scroll-area { width: auto; padding: 1rem 1.25rem 0; box-shadow: 0, -0.5px 0.71428rem 0 rgba(0, 0, 0, .6); }
+  .popup .popup-footer .btn-scroll-area .btn-h40 { height: 2.5rem; background: #141414; border-radius: 1.875rem; font-size: 0.85714rem; line-height: 1.25rem; color: #C8C8C8; padding: 0 2.5rem 0 1.25rem; }
+  .popup .popup-footer .btn-scroll-area .btn-h40-close { width: 0.85714rem; height: 0.85714rem; background: url('../img/btn-h40-close.png') no-repeat center/0.57142rem 0.57142rem; top: 0.875rem; right: 0.71428rem; }
+  .popup .popup-footer .btn-select-area { width: 100%; height: auto; padding: 0.57142rem 1.42857rem 0.71428rem; text-align: center; display: flex; align-items: center; }
+  .popup .popup-footer .btn-select-area .btn-gray { display: inline-block; width: 30%; height: 3.42857rem; padding: 0 1.42857rem; border-radius: 0.57142rem; text-align: center; background: #434343; }
+  .popup .popup-footer .btn-select-area .btn-gray > span { font-size: 1.07142rem; font-weight: 700; line-height: 1.07142rem; color: #fff; }
+  .popup .popup-footer .btn-select-area .btn-gray + .btn-yellow { margin-left: 2.715%; }
+  .popup .popup-footer .btn-select-area .btn-yellow { display: inline-block; width: calc(100% - 32.715%); height: 3.42857rem; padding: 0 1.42857rem; border-radius: 0.57142rem; text-align: center; background: #FAFF00; }
+  .popup .popup-footer .btn-select-area .btn-yellow > span { font-size: 1.07142rem; font-weight: 700; line-height: 1.07142rem; color: #393939; }
+  .popup .btn-popup-close { background: url('../img/btn-popup-close.png') no-repeat center/1.42857rem 1.42857rem; }
+  
+  /* 지역 검색 팝업, 브랜드 검색 팝업 */
+  .popup.choice .popup-body .left-area .btn-rect-area li .btn-rect,
+  .popup.choice .popup-body .right-area .btn-rect-area li .btn-rect { font-size: 1.07142rem; height: 3.42857rem; }
+  .popup.choice .popup-body .left-area, .popup.choice .popup-body .right-area { height: 34rem; }
+  .popup.choice .popup-footer .btn-scroll-area { height: 3.78571rem; padding: 0.71428rem 0 0.71428rem 1.25rem; }
+  .popup.choice .popup-footer .btn-scroll-area .btn-h40 { padding: 0 1.85714rem 0 0.71428rem; background: #333; }
+  .popup.choice .popup-footer .btn-scroll-area .btn-h40 + .btn-h40 { margin-left: 0.85714rem; }
+  .popup.choice .popup-footer .btn-scroll-area .btn-h40-close { right: 0.71428rem; }
+}

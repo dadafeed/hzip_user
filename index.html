@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hzip user 퍼블리싱 화면목록</title>
+  <style>
+    body { margin: 0; padding: 0; font-family: "Malgun Gothic"; color: #444; }
+    .summary { padding: 40px 20px; font-size: 20px; font-weight: 700; line-height: 38px; text-align: center; background: #eee; }
+    h1 { margin: 0; padding: 0; font-size: 16px; padding: 0 20px; height: 40px; line-height: 40px; background: #444; color: #fff; }
+    table { width: 100%; border-collapse: collapse; border: 0; }
+    th, td { padding: 5px; border: 1px solid #bbb; font-size: 12px; text-align: left; }
+    th { background: #ffff44e0; }
+    tr.main td { border-top: 3px solid #444; }
+    tr td { padding: 8px; }
+    tr td a { color: #000; }
+    th:nth-child(1), td:nth-child(1) { width: 30px; text-align: center; }
+    th:nth-child(2), td:nth-child(2) { width: 80px; }
+    th:nth-child(3), td:nth-child(3) { width: 400px; }
+    th:nth-child(4), td:nth-child(4) { width: 30px; text-align: center; }
+    th:nth-child(5), td:nth-child(5) { width: 30px; text-align: center; }
+    th:nth-child(6), td:nth-child(6) { width: 300px; }
+  </style>
+</head>
+<body>
+  <h1>Hzip 유저 퍼블리싱 화면목록</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Page Name</th>
+        <th>Path</th>
+        <th>PC</th>
+        <th>Mobile</th>
+        <th>Notice</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>메인</td>
+        <td><a href="./pages/main.html" target="_blank">pages/main.html</a></td>
+        <td>O</td>
+        <td>O</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>지역선택 팝업</td>
+        <td><a href="./pages/pop/region.html" target="_blank">pages/pop/region.html</a></td>
+        <td>O</td>
+        <td>O</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>브랜드선택 팝업</td>
+        <td><a href="./pages/pop/brand.html" target="_blank">pages/pop/brand.html</a></td>
+        <td>O</td>
+        <td>O</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>단지목록</td>
+        <td><a href="./pages/apartmentList.html" target="_blank">pages/apartmentList.html</a></td>
+        <td>O</td>
+        <td>O</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>단지상세</td>
+        <td><a href="./pages/apartmentDetail.html" target="_blank">pages/apartmentDetail.html</a></td>
+        <td>O</td>
+        <td>O</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>매물목록</td>
+        <td><a href="./pages/saleList.html" target="_blank">pages/saleList.html</a></td>
+        <td>O</td>
+        <td>O</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>H콘텐츠</td>
+        <td><a href="./pages/hcontents.html" target="_blank">pages/hcontents.html</a></td>
+        <td>O</td>
+        <td>O</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>H콘텐츠 상세</td>
+        <td><a href="./pages/hcontentsDetail.html" target="_blank">pages/hcontentsDetail.html</a></td>
+        <td>O</td>
+        <td>O</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>광고문의 등록</td>
+        <td><a href="./pages/pop/adRegistration.html" target="_blank">pages/pop/adRegistration.html</a></td>
+        <td>O</td>
+        <td>O</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>광고문의 접수</td>
+        <td><a href="./pages/pop/adConfirmation.html" target="_blank">pages/pop/adConfirmation.html</a></td>
+        <td>O</td>
+        <td>O</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="summary">
+    * 랜딩페이지 - MO: ~720px / PC: 720px~ <br />
+    * 팝업 - MO: ~575px / PC: 575px~ <br /><br />
+    * CSS<br />
+    - style.css -> 랜딩, 팝업 레이아웃 공통 + 01.메인 ~ 05.단지상세<br />
+    - contents.css -> 06.매물목록 ~ 10.광고문의<br />
+  </div>
+</body>
+</html>
